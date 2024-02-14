@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useTransition } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import About from "./components/About";
+import Contact from "./components/Contact";
 
 function App() {
+  const [isDisplay, setIsDisplay] = useState(false);
+  const handleClick = () => {
+    setIsDisplay(true);
+    window.open("https://source.unsplash.com/random");
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+          <Link to="/">Home</Link>
+          <br />
+          <Link to="/about">About</Link>
+          <br />
+          <Link to="/contact">Contact</Link>
+          <br />
+        </BrowserRouter>
+      </div>
+      <div className="image-box">
+        <button className="image-btn" onClick={handleClick}>
+          画像取得
+        </button>
+      </div>
     </div>
   );
 }
