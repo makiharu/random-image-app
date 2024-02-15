@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  line-height: calc(140px - 60px);
 }
 
 .image-box {

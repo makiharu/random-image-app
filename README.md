@@ -1,12 +1,14 @@
 # プロジェクト作成
+
 npx create-react-app --template typescript random-image-app
 
+### React router 導入
 
-### React router導入
-//npmの場合
+//npm の場合
 npm install react-router-dom
 
 ## 起動方法
+
 ### `npm start`
 
 Runs the app in the development mode.\
