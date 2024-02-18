@@ -3,10 +3,16 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Iframe from "react-iframe";
+import React from "react";
 
 function App() {
+  const [dispFrame, setDispFrame] = React.useState(false);
+  const [url, setUrl] = React.useState("");
   const handleClick = () => {
-    window.open("https://source.unsplash.com/random");
+    setDispFrame(true);
+    const randomImageUrl = "https://source.unsplash.com/random";
+    setUrl(randomImageUrl);
   };
 
   return (
@@ -30,6 +36,17 @@ function App() {
         <button className="image-btn" onClick={handleClick}>
           画像取得
         </button>
+        {dispFrame && (
+          <Iframe
+            url={url}
+            width="1080px"
+            height="720px"
+            id=""
+            className=""
+            display="block"
+            position="relative"
+          />
+        )}
       </div>
     </div>
   );

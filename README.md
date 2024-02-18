@@ -1,3 +1,7 @@
+# プロジェクト概要
+
+ボタン押下で画像をランダムに表示する。
+
 # プロジェクト作成
 
 npx create-react-app --template typescript random-image-app
