@@ -5,6 +5,10 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Iframe from "react-iframe";
 import React from "react";
+import Title from "./components/Title";
+import Form from "./components/Form";
+import axios from "axios";
+import Results from "./components/Results";
 
 function App() {
   const [dispFrame, setDispFrame] = React.useState(false);
@@ -15,8 +19,27 @@ function App() {
     setUrl(randomImageUrl);
   };
 
+  const [searchWord, setSearchWord] = React.useState("");
+  const [resultData, setResultData] = React.useState([]);
+
+  const getImage = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    axios
+      .get(
+        "https://api.unsplash.com/search/photos?query=cat&client_id=yiLGX71DzCdzlb0cX3grENMM_BcwurXRAvGy-mKLDTk"
+        // .get('https://api.unsplash.com/search/photos?query=cat&client_id=XXXXX')
+      )
+      .then((res) => {
+        console.log(JSON.stringify(res));
+        setResultData(res.data.results.urls);
+      });
+  };
+
   return (
     <div className="App">
+      <Title />
+      <Form setSearchWord={setSearchWord} getImage={getImage} />
+      <Results resultData={resultData} />
       <div>
         <BrowserRouter>
           <Routes>
